@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Five Nights at Freddy's | Unclocked</title>
+	</head>
+	<body>
+		<!-- DISCLAIMER -->
+		<section id="screen-disclaimer" class="screen active">
+			<div class="warning-box">
+				<p class="warning-title">WARNING</p>
+				<p class="warning-text">
+					This game contains flashing lights,<br />
+					loud noises, and sudden scares.
+				</p>
+				<p class="warning-continue">Click anywhere to continue</p>
+			</div>
+		</section>
+
+		<!-- MAIN MENU -->
+		<section id="screen-main-menu" class="screen">
+			<div id="game-title-bg">
+				<img src="assets/images/Freddy.png" alt="Game Title Background" />
+			</div>
+
+			<header>
+				<h1 class="game-title">
+					<span>Five</span>
+					<span>Nights</span>
+					<span>at</span>
+					<span>Freddy's</span>
+					<span class="subtitle">Unclocked</span>
+				</h1>
+			</header>
+
+			<main>
+				<ul id="main-menu" class="menu active">
+					<li><button id="new">New Game</button></li>
+					<li><button id="continue">Continue</button></li>
+					<li><button id="6th-night">6th Night</button></li>
+					<li><button id="custom">Custom Night</button></li>
+				</ul>
+			</main>
+		</section>
+
+		<!-- CUSTOM NIGHT -->
+		<section id="screen-custom-night" class="screen">
+			<main>
+				<ul id="custom-menu" class="menu active">
+					<li>
+						<button id="start-custom-night">Start Night</button>
+					</li>
+					<li>
+						<p>Freddy</p>
+						<div><button>-</button><span>10</span><button>+</button></div>
+					</li>
+					<li>
+						<p>Bonnie</p>
+						<div><button>-</button><span>10</span><button>+</button></div>
+					</li>
+					<li>
+						<p>Chica</p>
+						<div><button>-</button><span>10</span><button>+</button></div>
+					</li>
+					<li>
+						<p>Foxy</p>
+						<div><button>-</button><span>10</span><button>+</button></div>
+					</li>
+					<li>
+						<p>Golden Freddy</p>
+						<div><button>-</button><span>10</span><button>+</button></div>
+					</li>
+					<li>
+						<button id="back-to-main-menu">Back</button>
+					</li>
+				</ul>
+			</main>
+		</section>
+
+		<!-- GAMEPLAY -->
+		<section id="screen-gameplay" class="screen">
+			<canvas id="game-canvas"></canvas>
+		</section>
+
+		<!-- CREDITS -->
+		<section id="screen-credits" class="screen">
+			<div class="credits">
+				<p>Thanks for playing</p>
+				<p>© 2025 Fazbear Entertainment</p>
+			</div>
+		</section>
+
+		<script src="main.js"></script>
+	</body>
+</html>
