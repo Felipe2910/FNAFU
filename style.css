@@ -284,3 +284,121 @@ button.selected::before {
 		filter: blur(3px);
 	}
 }
+
+@media (max-height: 500px) and (orientation: landscape) {
+	/* GLOBAL */
+	body {
+		font-size: 14px;
+	}
+
+	header {
+		padding: 1rem 2rem;
+	}
+
+	main {
+		align-items: flex-start;
+	}
+
+	/* TITLE */
+	.game-title span {
+		font-size: 2.2rem;
+		letter-spacing: 0.15rem;
+	}
+
+	.subtitle {
+		font-size: 1.2rem;
+		margin-top: 0.5rem;
+	}
+
+	/* WARNING */
+	.warning-title {
+		font-size: 2.5rem;
+	}
+
+	.warning-text {
+		font-size: 1.2rem;
+	}
+
+	.warning-continue {
+		margin-top: 2rem;
+		font-size: 1rem;
+	}
+
+	/* MENU */
+	.menu {
+		margin-left: 2rem;
+		gap: 0.8rem;
+	}
+
+	button {
+		font-size: 1.8rem;
+	}
+
+	button.selected {
+		transform: translateX(0.5rem);
+	}
+
+	button.selected::before {
+		left: -2.5rem;
+	}
+
+	/* FOOTER */
+	footer {
+		padding: 0.5rem 1rem;
+		font-size: 0.8rem;
+	}
+
+	/* BACKGROUND */
+	#game-title-bg img {
+		height: 120%;
+		right: -10%;
+	}
+}
+
+@media (max-height: 360px) and (orientation: landscape) {
+	header {
+		padding: 0.5rem 1.5rem;
+	}
+
+	.game-title span {
+		font-size: 1.8rem;
+	}
+
+	.subtitle {
+		font-size: 1rem;
+	}
+
+	.menu {
+		margin-left: 1.5rem;
+	}
+
+	button {
+		font-size: 1.5rem;
+	}
+
+	footer {
+		display: none;
+	}
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+	#custom-menu li {
+		gap: 0.5rem;
+	}
+
+	#custom-menu p {
+		width: 120px;
+		font-size: 1.5rem;
+	}
+
+	#custom-menu div > button {
+		width: 1.5rem;
+		height: 1.5rem;
+		font-size: 1.2rem;
+	}
+
+	#start-custom-night {
+		font-size: 1.2rem;
+		padding: 0.5rem 1rem;
+	}
+}

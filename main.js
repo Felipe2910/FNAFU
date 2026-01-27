@@ -619,6 +619,7 @@ class Game {
 		this.audio.stopAll();
 		this.state = "menu";
 		changeScreen("mainMenu");
+		audio.playLoop("menu");
 	}
 }
 
@@ -638,7 +639,7 @@ class AudioManager {
 			const audio = new Audio(src);
 			audio.preload = "auto";
 
-			if (name === "ambient" || name === "light" || name === "toreador_march") {
+			if (name === "menu" || name === "ambient" || name === "light" || name === "toreador_march") {
 				audio.loop = true;
 				audio.volume = name === "ambient" ? 0.4 : 0.5;
 				this.loops[name] = audio;
@@ -745,21 +746,28 @@ class Renderer {
 		const { ctx, canvas } = this;
 		let img = this.assets.images.office.base;
 
+		// Luz izquierda
 		if (game.doors.left.light) {
-			img = this.assets.images.office.lights.left;
-		} else if (game.doors.right.light) {
-			img = this.assets.images.office.lights.right;
-		} else {
-			// Ver animatrónicos en la oficina
-			for (const a of Object.values(game.animatronics)) {
-				if (a.location === "left-door" && a.name === "bonnie") {
-					img = this.assets.images.office.animatronics.bonnie;
-					break;
-				} else if (a.location === "right-door" && a.name === "chica") {
-					img = this.assets.images.office.animatronics.chica;
-					break;
-				}
-			}
+			// ¿Bonnie en la puerta izquierda?
+			const bonnie = Object.values(game.animatronics).find(
+				(a) => a.name === "bonnie" && a.location === "left-door"
+			);
+
+			img = bonnie
+				? this.assets.images.office.animatronics.bonnie
+				: this.assets.images.office.lights.left;
+		}
+
+		// Luz derecha
+		else if (game.doors.right.light) {
+			// ¿Chica en la puerta derecha?
+			const chica = Object.values(game.animatronics).find(
+				(a) => a.name === "chica" && a.location === "right-door"
+			);
+
+			img = chica
+				? this.assets.images.office.animatronics.chica
+				: this.assets.images.office.lights.right;
 		}
 
 		// Fondo de oficina
@@ -837,7 +845,7 @@ class Renderer {
 		const mapY = canvas.height - 400;
 
 		this.renderCameraMap(ctx, mapX, mapY);
-		this.renderCameraButtons(ctx, game.selectedCam, mapX-50, mapY-50);
+		this.renderCameraButtons(ctx, game.selectedCam, mapX - 50, mapY - 50);
 		this.drawMonitorButton(ctx, canvas);
 	}
 
@@ -932,16 +940,25 @@ class Renderer {
 
 	renderHUD(game) {
 		const { ctx } = this;
-		this.drawText(ctx, `Time: ${game.clock.getDisplay()}`, (canvas.width - 180), 70, { align: "left", font: "20px monospace" });
-		this.drawText(ctx, `Night ${game.night}`, (canvas.width - 180), 95, { align: "left", font: "20px monospace" });
-		this.drawText(ctx, `Power: ${game.power.power.toFixed(0)}%`, 70, (canvas.height - 90), { align: "left", font: "20px monospace" });
-		this.drawText(ctx, `Usage:`, 70, (canvas.height - 70), { align: "left", font: "20px monospace" });
+		this.drawText(ctx, `Time: ${game.clock.getDisplay()}`, canvas.width - 180, 70, {
+			align: "left",
+			font: "20px monospace",
+		});
+		this.drawText(ctx, `Night ${game.night}`, canvas.width - 180, 95, {
+			align: "left",
+			font: "20px monospace",
+		});
+		this.drawText(ctx, `Power: ${game.power.power.toFixed(0)}%`, 70, canvas.height - 90, {
+			align: "left",
+			font: "20px monospace",
+		});
+		this.drawText(ctx, `Usage:`, 70, canvas.height - 70, { align: "left", font: "20px monospace" });
 
 		// Barras de uso
 		const usage = Math.max(0, Math.min(5, game.getUsage()));
 		const usageColors = ["#0f0", "#0f0", "#ff0", "#f00", "#f00"];
 		for (let i = 0; i < usage; i++) {
-			this.drawRect(ctx, 140 + i * 20, (canvas.height - 80), 18, 20, usageColors[i]);
+			this.drawRect(ctx, 140 + i * 20, canvas.height - 80, 18, 20, usageColors[i]);
 		}
 	}
 
