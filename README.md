@@ -1,7 +1,7 @@
 # FNAF 1 JS PORT - VERSIÓN Alpha
 
-![FNAF](/assets/images/Five_Nights_at_Freddy's.png){ style="display: block; margin: 0 auto;" }
-![JavaScript](/assets/images/JavaScript.png){ style="display: block; margin: 0 auto;" }
+![FNAF](/assets/images/Five_Nights_at_Freddy's.png)
+![JavaScript](/assets/images/JavaScript.png)
 
 ## :page_facing_up: Descripción
 
